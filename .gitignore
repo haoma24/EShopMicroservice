@@ -416,3 +416,18 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Docker / microservices
+.env
+.env.local
+.env.*.local
+docker-secrets/
+**/appsettings.local.json
+**/appsettings.secrets.json
+
+# Rider
+.idea/
+*.sln.iml
+
+# Claude Code
+.claude/
