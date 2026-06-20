@@ -1,15 +1,26 @@
+using MassTransit;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Microsoft.FeatureManagement;
+using Ordering.Application.Orders.Queries;
 using Ordering.Domain.Events;
 
 namespace Ordering.Application.Orders.EventHandlers.Domain;
 
-public class OrderCreatedEventHandler(ILogger<OrderCreatedEventHandler> logger)
+public class OrderCreatedEventHandler(
+    IPublishEndpoint publishEndpoint,
+    IFeatureManager featureManager,
+    ILogger<OrderCreatedEventHandler> logger)
     : INotificationHandler<OrderCreatedEvent>
 {
-    public Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
+    public async Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Domain event handled: {DomainEvent}", notification.GetType().Name);
-        return Task.CompletedTask;
+        logger.LogInformation("Domain Event handled: {DomainEvent}", notification.GetType().Name);
+
+        if (await featureManager.IsEnabledAsync("OrderFullfilment"))
+        {
+            var orderCreatedIntegrationEvent = notification.Order.ToOrderDto();
+            await publishEndpoint.Publish(orderCreatedIntegrationEvent, cancellationToken);
+        }
     }
 }

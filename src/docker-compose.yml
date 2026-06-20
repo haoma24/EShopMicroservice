@@ -24,6 +24,8 @@ services:
     build:
       context: .
       dockerfile: Services/Ordering/Ordering.API/Dockerfile
+  messagebroker:
+    image: rabbitmq:management
 
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
@@ -42,5 +44,6 @@ volumes:
   postgres_catalog:
   postgres_basket:
   mssql_order:
+  rabbitmq_data:
 
 

@@ -40,5 +40,5 @@ public static class DatabaseExtensions
         if (await context.Orders.AnyAsync()) return;
         context.Orders.AddRange(InitialData.OrdersWithItems);
         await context.SaveChangesAsync();
-    }
+}
 }
