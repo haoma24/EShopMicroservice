@@ -70,6 +70,7 @@ services:
       - "FeatureManagement__OrderNotifications=true"
     depends_on:
       - "orderdb"
+      - "messagebroker"
     ports:
       - "6003:8080"
       - "6063:8081"
