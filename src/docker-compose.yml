@@ -18,6 +18,10 @@ services:
 
   orderdb:
     image: mcr.microsoft.com/mssql/server
+
+  messagebroker:
+    image: rabbitmq:management
+
   basket.api:
     image: ${DOCKER_REGISTRY-}basketapi
     build:
@@ -35,5 +39,6 @@ volumes:
   postgres_catalog:
   postgres_basket:
   mssql_order:
+  rabbitmq_data:
 
 

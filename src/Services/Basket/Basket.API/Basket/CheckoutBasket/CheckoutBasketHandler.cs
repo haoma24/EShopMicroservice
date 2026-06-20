@@ -35,7 +35,13 @@ namespace Basket.API.Basket.CheckoutBasket
             if (basket == null) return new CheckoutBasketResult(false);
 
             var eventMessage = command.Adapt<BasketCheckoutEvent>();
-            eventMessage = eventMessage with { TotalPrice = basket.TotalPrice };
+            eventMessage = eventMessage with
+            {
+                TotalPrice = basket.TotalPrice,
+                Items = basket.Items
+                    .Select(i => new BasketCheckoutEventItem(i.ProductId, i.Quantity, i.Price))
+                    .ToList()
+            };
 
             await publishEndpoint.Publish(eventMessage, cancellationToken);
             await repository.DeleteBasket(command.UserName, cancellationToken);
