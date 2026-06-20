@@ -19,6 +19,11 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server
 
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: .
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
   messagebroker:
     image: rabbitmq:management
 
