@@ -431,3 +431,10 @@ docker-secrets/
 
 # Claude Code
 .claude/
+
+# SQLite WAL/SHM temp files
+*.db-shm
+*.db-wal
+
+# Backup Dockerfiles
+Dockerfile.original
