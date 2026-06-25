@@ -63,7 +63,11 @@ public class OrderConfiguration : IEntityTypeConfiguration<Order>
 
         builder.Property(o => o.Status)
             .HasDefaultValue(OrderStatus.Draft)
+            .HasSentinel((OrderStatus)0)
             .HasConversion<string>();
+
+        builder.Property(o => o.TotalPrice)
+            .HasPrecision(18, 2);
 
         builder.HasMany(o => o.OrderItems)
             .WithOne()
