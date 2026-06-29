@@ -1,29 +1,32 @@
-# WebApps
+# React + TypeScript + Vite
 
-A minimal Remix application starter with a home page.
+This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Starter Shape
+Currently, two official plugins are available:
 
-- `app/actions/controller.tsx` owns the top-level route actions.
-- `app/routes.ts` defines the route contract.
-- `app/router.ts` wires routes to handlers.
-- `app/middleware/render.tsx` installs the request-scoped renderer used by actions.
-- `app/ui/` holds the shared document shell and home page UI.
-- `app/assets.ts` owns the server-side asset pipeline used by the asset route and renderer.
-- `public/` contains static files served from the app root.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Growing The App
+## React Compiler
 
-- Put top-level route actions in `app/actions/controller.tsx`.
-- Add `app/actions/<route-key>/controller.tsx` when a nested route map needs its own actions or middleware.
-- Add directories like `app/data/` or `test/` when the app actually needs them.
-- Move shared UI into `app/ui/` once more than one route needs it.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Commands
+## Expanding the Oxlint configuration
 
-```sh
-npm i
-npm run start
-npm test
-npm run typecheck
+If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+
+```json
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc"],
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }]
+  }
+}
 ```
+
+See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
