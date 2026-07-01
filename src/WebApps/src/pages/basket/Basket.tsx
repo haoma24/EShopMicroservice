@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ErrorState } from '@/components/ErrorState'
-import { useBasket } from './hooks/useBasket'
+import { useBasket } from '@/hooks/useBasket'
 
 const priceFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -80,6 +80,15 @@ export function Basket() {
       <div className="mt-6 flex items-center justify-between border-t border-gray-200 pt-4">
         <span className="text-base font-medium text-gray-900">Total</span>
         <span className="text-lg font-semibold text-gray-900">{priceFormatter.format(total)}</span>
+      </div>
+
+      <div className="mt-6 flex justify-end">
+        <Link
+          to="/checkout"
+          className="rounded-md bg-gray-900 px-5 py-3 text-sm font-medium text-white hover:bg-gray-700"
+        >
+          Proceed to checkout
+        </Link>
       </div>
     </section>
   )
