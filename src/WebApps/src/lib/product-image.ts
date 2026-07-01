@@ -1,4 +1,4 @@
-// Catalog stores only the image file name (e.g. "product-1.png").
+// Catalog stores only the image file name (e.g. "product-1.jpg").
 // The actual assets live in `public/images/products/`, served from the web root.
 const PRODUCT_IMAGE_BASE = '/images/products'
 

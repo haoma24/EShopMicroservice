@@ -11,8 +11,9 @@ export function Header() {
           <Link to="/" className="hover:text-gray-900">
             Products
           </Link>
-          {/* Basket nav — wired up once the basket feature exists */}
-          <span className="cursor-not-allowed text-gray-400">Basket</span>
+          <Link to="/basket" className="hover:text-gray-900">
+            Basket
+          </Link>
         </nav>
       </div>
     </header>

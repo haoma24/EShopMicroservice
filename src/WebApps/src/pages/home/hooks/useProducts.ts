@@ -1,11 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '@/services/catalog.service'
-
-export const productKeys = {
-  all: ['products'] as const,
-  list: (pageNumber: number, pageSize: number) =>
-    [...productKeys.all, 'list', { pageNumber, pageSize }] as const,
-}
+import { productKeys } from '@/lib/query-keys'
 
 export function useProducts(pageNumber = 1, pageSize = 10) {
   return useQuery({
