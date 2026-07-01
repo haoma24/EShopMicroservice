@@ -1,20 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { getBasket, storeBasket } from '@/services/basket.service'
+import { storeBasket } from '@/services/basket.service'
 import type { ProductModel } from '@/models/catalog/product-model'
-import type { ShoppingCartModel } from '@/models/basket/cart-model'
 import { DEFAULT_USER_NAME } from '@/lib/constants'
 import { basketKeys } from '@/lib/query-keys'
-
-// Loads the user's basket, falling back to an empty cart when none exists yet
-// (the basket service returns 404 for a first-time user).
-async function loadUserBasket(userName: string): Promise<ShoppingCartModel> {
-  try {
-    const { cart } = await getBasket(userName)
-    return cart
-  } catch {
-    return { userName, items: [] }
-  }
-}
+import { loadUserBasket } from './basket-cart'
 
 // Mirrors the reference `OnPostAddToCartAsync`: load basket, add the product as
 // a line item (quantity 1, default color), then persist the whole basket.
