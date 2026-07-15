@@ -46,6 +46,14 @@ services:
       context: .
       dockerfile: ApiGateways/YarpApiGateway/Dockerfile
 
+  webapps:
+    image: ${DOCKER_REGISTRY-}webapps
+    build:
+      context: WebApps
+      dockerfile: Dockerfile
+      args:
+        VITE_GATEWAY_URL: ${VITE_GATEWAY_URL:-http://localhost:6004}
+
 volumes:
   postgres_catalog:
   postgres_basket:

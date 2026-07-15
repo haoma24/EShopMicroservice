@@ -11,6 +11,9 @@ export function Header() {
           <Link to="/" className="hover:text-gray-900">
             Products
           </Link>
+          <Link to="/orders" className="hover:text-gray-900">
+            Orders
+          </Link>
           <Link to="/basket" className="hover:text-gray-900">
             Basket
           </Link>

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ErrorState } from '@/components/ErrorState'
 import { useBasket } from '@/hooks/useBasket'
-import { DEFAULT_USER_NAME } from '@/lib/constants'
+import { DEFAULT_CUSTOMER_ID, DEFAULT_USER_NAME } from '@/lib/constants'
 import type { CheckoutBasketRequest } from '@/models/basket/requests'
 import { useCheckout } from './hooks/useCheckout'
 
@@ -88,7 +88,7 @@ export function Checkout() {
 
     const request: CheckoutBasketRequest = {
       userName: DEFAULT_USER_NAME,
-      customerId: crypto.randomUUID(),
+      customerId: DEFAULT_CUSTOMER_ID,
       ...form,
       paymentMethod: 1,
     }

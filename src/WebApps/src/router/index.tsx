@@ -5,6 +5,7 @@ import { Basket } from '@/pages/basket/Basket'
 import { ProductDetail } from '@/pages/product-detail/ProductDetail'
 import { Checkout } from '@/pages/checkout/Checkout'
 import { OrderSubmitted } from '@/pages/order-submitted/OrderSubmitted'
+import { Orders } from '@/pages/orders/Orders'
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'products/:id', element: <ProductDetail /> },
       { path: 'basket', element: <Basket /> },
+      { path: 'orders', element: <Orders /> },
       { path: 'checkout', element: <Checkout /> },
       { path: 'order-submitted', element: <OrderSubmitted /> },
     ],

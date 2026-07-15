@@ -12,3 +12,9 @@ export const productKeys = {
     [...productKeys.all, 'list', { pageNumber, pageSize }] as const,
   detail: (id: string) => [...productKeys.all, 'detail', id] as const,
 }
+
+export const orderKeys = {
+  all: ['orders'] as const,
+  list: (pageIndex: number, pageSize: number) =>
+    [...orderKeys.all, 'list', { pageIndex, pageSize }] as const,
+}

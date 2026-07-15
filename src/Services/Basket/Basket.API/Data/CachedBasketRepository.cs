@@ -5,13 +5,16 @@ namespace Basket.API.Data
 {
     public class CachedBasketRepository(IBasketRepository repository, IDistributedCache cache) : IBasketRepository
     {
-        public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken = default)
+        public async Task<ShoppingCart?> GetBasket(string userName, CancellationToken cancellationToken = default)
         {
             var cached = await cache.GetStringAsync(userName, cancellationToken);
             if (cached is not null)
                 return JsonSerializer.Deserialize<ShoppingCart>(cached)!;
 
             var basket = await repository.GetBasket(userName, cancellationToken);
+            if (basket is null)
+                return null;
+
             await cache.SetStringAsync(userName, JsonSerializer.Serialize(basket), cancellationToken);
             return basket;
         }

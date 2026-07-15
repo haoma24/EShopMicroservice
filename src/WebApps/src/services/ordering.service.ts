@@ -16,7 +16,8 @@ async function request<T>(input: string, init?: RequestInit): Promise<T> {
   return res.json() as Promise<T>
 }
 
-export function getOrders(pageIndex = 1, pageSize = 10): Promise<GetOrdersResponse> {
+// PageIndex is zero-based to match the ordering API (first page = 0).
+export function getOrders(pageIndex = 0, pageSize = 10): Promise<GetOrdersResponse> {
   return request(`${BASE_URL}/orders?PageIndex=${pageIndex}&PageSize=${pageSize}`)
 }
 
