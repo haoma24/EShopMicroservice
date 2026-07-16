@@ -107,3 +107,5 @@ Skeleton gRPC service running on **.NET 8** (intentionally different SDK). Proto
 ### Adding a new microservice
 
 Mirror the Catalog or Basket structure: reference `BuildingBlocks`, register Carter + MediatR + Marten (or another store) in `Program.cs`, add a service entry in `docker-compose.yml` and `docker-compose.override.yml`.
+
+### Test gitgate
